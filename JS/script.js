@@ -10,6 +10,13 @@ let imgStart = Math.floor(Math.random() * 100) + 1;
 let images = [];
 let cards = [];
 
+let firstCard = null;
+let secondCard = null;
+let lockBoard = null;
+
+let moves = 0;
+let matchedCount = 0;
+
 for (let i = imgStart; i < imgStart + 8; i++) {
     images.push(`https://picsum.photos/seed/${i}/${dimension}/${dimension}`);
 }
@@ -27,16 +34,72 @@ function initGame() {
     shuffle(cards);
     board.innerHTML = "";
 
-    cards.forEach(imgURL => {
+    cards.forEach(imgUrl => {
         const card = document.createElement("div");
 
         card.classList.add("card");
-        card.dataset.image = imgURL;
+        card.dataset.value = imgUrl;
+
         card.setAttribute("role", "button");
         card.setAttribute("tabindex", "0");
 
+        card.addEventListener("click", () => handleCardClick(card));
+
         board.appendChild(card);
     });
+}
+
+function handleCardClick(card) {
+    if (lockBoard || card.classList.contains("matched") || card === firstCard || card.firstChild) {
+        return;
+    }
+
+    revealCard(card);
+
+    if (!firstCard) {
+        firstCard = card;
+        return;
+    }
+
+    secondCard = card;
+    lockBoard = true;
+
+    moves++;
+    movesDisplay.textContent = moves;
+
+    checkMatch();
+}
+
+function revealCard(card) {
+  const img = document.createElement("img");
+
+  img.src = card.dataset.value;
+  img.alt = "Image de mémoire";
+
+  card.appendChild(img);
+}
+
+function checkMatch() {
+    if (firstCard.dataset.value === secondCard.dataset.value) {
+        firstCard.classList.add("matched");
+        secondCard.classList.add("matched");
+
+        matchedCount += 2;
+        resetTurn();
+    } else {
+        setTimeout(() => {
+            firstCard.innerHTML = "";
+            secondCard.innerHTML = "";
+
+            resetTurn();
+        }, 800);
+    }
+}
+
+function resetTurn() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
 }
 
 initGame();
