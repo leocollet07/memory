@@ -1,0 +1,131 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 30px;
+  display: grid;
+  place-items: center;
+  font-family: 'Inter', sans-serif;
+  background: #1E1B3A;
+  color: #FFF7ED;
+}
+
+.game {
+  width: 100%;
+  max-width: 650px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+h1 {
+  color: #FF9A76;
+  font-size: 6vw;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+header p,
+.stat span {
+  color: #D6C4DC;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background: #302746;
+  border-radius: 15px;
+}
+
+.stat {
+  display: grid;
+  gap: 4px;
+}
+
+.stat strong {
+  font-size: 1.4rem;
+  color: #FFD0A8;
+}
+
+button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #F97360;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  background: #EA5B68;
+  transform: scale(1.05);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #6D4B70;
+  border-radius: 10px;
+  background: #493354;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card::before {
+  content: "?";
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FFB38A;
+}
+
+.card:hover {
+  background: #62405F;
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card:has(img)::before {
+  display: none;
+}
+
+.card.matched {
+  border: 3px solid #FBBF77;
+  cursor: default;
+}
+
+.result {
+  min-height: 32px;
+  margin-top: 24px;
+  text-align: center;
+  color: #FFAD91;
+  font-size: 1.2rem;
+  font-weight: 700;
+}

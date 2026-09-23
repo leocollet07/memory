@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="JS/script.js" defer></script>
+</head>
+<body>
+
+    <main class="game">
+        <header>
+            <h1>Memory</h1>
+            <p>Retrouvez les paires d'images !</p>
+        </header>
+
+        <section class="stats">
+            <div class="stat">
+                <span>Coups</span>
+                <strong id="moves">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Temps</span>
+                <strong id="timer">00:00</strong>
+            </div>
+
+            <button id="restart-btn">Recommencer</button>
+        </section>
+
+        <section id="game-board" class="board"></section>
+
+        <p id="result" class="result" aria-live="polite"></p>
+    </main>
+
+</body>
+</html>
